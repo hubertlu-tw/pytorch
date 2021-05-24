@@ -63,7 +63,7 @@ static TensorIterator make_index_iterator(const Tensor& input, const std::vector
         .add_owned_output(output_tensor)
         .add_borrowed_input(input);
   for (auto& index : indices) {
-    config.add_borrowed_input(index);
+    config.add_input(index);
   }
   return config.build();
 }
