@@ -25,6 +25,7 @@
 #endif
 
 #include <c10/cuda/CUDAMathCompat.h>
+#include <c10/util/env.h>
 
 namespace {
 // This is the un-specialized struct.  Note that we prevent instantiation of this
