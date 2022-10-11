@@ -1216,7 +1216,8 @@ void LayerNormBackwardKernelImplInternal(
     T* dgamma_data =
         dgamma->defined() ? dgamma->template data_ptr<T>() : nullptr;
     T* dbeta_data = dbeta->defined() ? dbeta->template data_ptr<T>() : nullptr;
-    if (M < 512) {
+    if (M < 2) {
+    //if (M < 512) {
       // For small batch size, do colwise reduce directly.
       const int64_t B = (N + kCUDANumThreads - 1) / kCUDANumThreads;
       GammaBetaBackwardSimpleCUDAKernel<T, T_ACC>
