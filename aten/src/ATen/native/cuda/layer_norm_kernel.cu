@@ -1225,7 +1225,7 @@ void LayerNormBackwardKernelImplInternal(
     T* dbeta_data = dbeta->defined() ? dbeta->template data_ptr<T>() : nullptr;
     
     if(c10::utils::check_env("ENABLE_APEX_GAMMABETA")) {
-        if (M <= 2048 ) {
+        if (M < 512 ) {
             // For small batch size, do colwise reduce directly.
             const int64_t B = (N + kCUDANumThreads - 1) / kCUDANumThreads;
             GammaBetaBackwardSimpleCUDAKernel<T, T_ACC>
